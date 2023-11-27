@@ -1,8 +1,10 @@
-#Python Hello World!
+Python Hello World!
+===
 
 Learning Objectives
 ---
 At the end of this project, we are expected to be able to explain to anyone, without the help of Google:
+---
 
 General  
 Why Python programming is awesome  
