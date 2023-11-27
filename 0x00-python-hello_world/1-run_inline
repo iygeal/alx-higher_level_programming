@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 ./$PYCODE
+eval "python3 -c '$PYCODE'"
