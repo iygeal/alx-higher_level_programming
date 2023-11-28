@@ -1,5 +1,6 @@
 def islower(c):
-    if c >= 'a' and c <= 'z':
+    i = ord(c)
+    if i >= 97 and i <= 122:
         return True
     else:
         return False
