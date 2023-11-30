@@ -10,4 +10,4 @@ else:
     print("{} arguments:".format(argc - 1))
 
 for i in range(1, argc):
-    print("{}: {}:".format(i, argc[i]))
+    print("{}: {}:".format(i, sys.argv[i]))
