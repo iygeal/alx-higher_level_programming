@@ -5,5 +5,4 @@ def print_matrix_integer(matrix=[[]]):
             print("{:d}".format(column), end="")
             if i != len(row) - 1:
                 print("{}".format(" "), end="")
-            else:
-                print()
+        print()
