@@ -7,4 +7,3 @@ def max_integer(my_list=[]):
         if num > biggest_num:  # Check if current number > b_n
             biggest_num = num  # Set biggest_num to current number if true
     return biggest_num  # Now biggest_num is definitely the max
-
