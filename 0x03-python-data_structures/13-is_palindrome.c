@@ -1,6 +1,5 @@
 #include "lists.h"
 #include <stddef.h>
-#include <stdbool.h>
 /**
  * reverse_list - Function that reverses a singly linked list
  * @head: Pointer to a pointer to the first node in the list
@@ -34,7 +33,7 @@ int is_palindrome(listint_t **head)
 	listint_t *aux = *head;
 	listint_t *dup = NULL;
 
-	while (true)
+	while (1)
 	{
 		fast = fast->next->next;
 		if (fast == NULL)
