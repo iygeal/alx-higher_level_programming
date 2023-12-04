@@ -33,15 +33,18 @@ int is_palindrome(listint_t **head)
 	listint_t *aux = *head;
 	listint_t *dup = NULL;
 
+	if (*head == NULL || (*head)->next == NULL)
+		return (1);
+
 	while (1)
 	{
 		fast = fast->next->next;
-		if (fast == NULL)
+		if (!fast)
 		{
 			dup = slow->next;
 			break;
 		}
-		if (fast->next == NULL)
+		if (!fast->next)
 		{
 			dup = slow->next->next;
 			break;
@@ -60,7 +63,7 @@ int is_palindrome(listint_t **head)
 		else
 			return (0);
 	}
-	if (dup == NULL)
+	if (!dup)
 		return (1);
 	else
 		return (0);
