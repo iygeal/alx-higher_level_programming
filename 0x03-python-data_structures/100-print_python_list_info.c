@@ -5,39 +5,21 @@
 
 /**
  * print_python_list_info - prints some basic info about python list
- * @p: python object
+ * @p: A python object
  **/
 void print_python_list_info(PyObject *p)
 {
-	long int size;
+	long int list_size;
 	int i;
 	PyListObject *obj;
 
-	if (!PyList_Check(p) || !p)
-	{
-		fprintf(stderr, "Invalid Python List\n");
-		return;
-	}
-
-	size = PyList_Size(p);
 	obj = (PyListObject *)p;
+	list_size = PyList_Size(p);
 
-	if (size < 0)
-	{
-		fprintf(stderr, "Failed to get size of Python List\n");
-		return;
-	}
-
-	printf("[*] Size of the Python List = %li\n", size);
+	printf("[*] Size of the Python List = %li\n", list_size);
 	printf("[*] Allocated = %li\n", obj->allocated);
-
-	for (i = 0; i < size; i++)
+	for (i = 0; i < list_size; i++)
 	{
-		if (!obj->ob_item[i])
-		{
-			fprintf(stderr, "Failed to get Python List item\n");
-			return;
-		}
-	printf("Element %i: %s\n", i, Py_TYPE(obj->ob_item[i])->tp_name);
+		printf("Element %i: %s\n", i, Py_TYPE(obj->ob_item[i])->tp_name);
 	}
 }
