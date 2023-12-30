@@ -1,4 +1,14 @@
 #!/usr/bin/python3
+"""
+Module providing a definition of
+class named 'Node' with two private instance attributes
+data and next_node
+
+Also, a class 'SinglyLinkedList' that defines a singly linked list
+with sorted insertion
+"""
+
+
 class Node:
     """
     Definition of class Node for a singly linked list
