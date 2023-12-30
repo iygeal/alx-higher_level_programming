@@ -90,14 +90,8 @@ class Square:
         Prints the square using # and the specified position
         If size is equal to 0, print empty line
         """
-        if self.__size == 0:
-            print()
-        else:
-            for _ in range(self.__position[1]):
-                print()
-            for _ in range(self.__size):
-                print(" " * self.__position[0] + "#" * self.__size, end="")
-            print()
+
+        print(self)
 
     def __str__(self):
         """
@@ -105,10 +99,9 @@ class Square:
         Returns:
         - str: A string representation of the square
         """
-        result = []
-        for _ in range(self.__position[1]):
-            result.append("\n")
-        for _ in range(self.__size):
-            result.append(" " * self.__position[0] + "#" * self.__size)
-            result.append("\n")
-        return "".join(result)
+
+        if self.size:
+            return '\n' * self.position[1] + '\n'.join(
+                [' ' * self.position[0] + '#' * self.size] * self.size
+            )
+        return str()
