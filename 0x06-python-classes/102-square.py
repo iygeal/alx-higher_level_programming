@@ -53,15 +53,15 @@ class Square:
         right-hand-side being compared to the current instance
         of the 'Square' class (self), on the left-hand-side.
         """
-        if isinstance(other, Square): # Assumes 'other' an instance of 'Square'
+        if isinstance(other, Square):  # Assumes 'other' an instance of Square
             return self.area() == other.area()
-        return False # Return False if area of 'other' != self.area
+        return False  # Return False if area of 'other' != self.area
 
     def __ne__(self, other):
         """
         Inequality comparison for two squares based on area
         """
-        return not self.__eq__(other) # != means True; so negate __eq__ method
+        return not self.__eq__(other)  # != means True; so negate __eq__ method
 
     def __gt__(self, other):
         """
@@ -69,7 +69,7 @@ class Square:
         """
         if isinstance(other, Square):
             return self.area() > other.area()
-        return NotImplemented # Indicates unsupported comparison
+        return NotImplemented  # Indicates unsupported comparison
 
     def __ge__(self, other):
         """
