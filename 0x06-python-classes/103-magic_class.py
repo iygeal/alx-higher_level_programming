@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-import math
 """
 Module of class named "MagicClass" which replicates a bytecode
 with circle methods
 """
+import math
 
 
 class MagicClass:
@@ -27,7 +27,7 @@ class MagicClass:
         """
         Calculates and returns the area of the circle
         """
-        return self.__radius ** 2 * math.pi
+        return (self.__radius ** 2) * math.pi
 
     def circumference(self):
         """
