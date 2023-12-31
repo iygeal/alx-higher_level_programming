@@ -11,7 +11,7 @@ class MagicClass:
     Definition of the class 'MagicClass'
     """
 
-    def __inti__(self, radius=0):
+    def __init__(self, radius=0):
         """
         Initialization of a MagicClass instance
 
@@ -27,7 +27,7 @@ class MagicClass:
         """
         Calculates and returns the area of the circle
         """
-        return self.radius ** 2 * math.pi
+        return self.__radius ** 2 * math.pi
 
     def circumference(self):
         """
