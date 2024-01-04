@@ -71,9 +71,9 @@ class Rectangle:
         my_rect = ""
         #  Loop through each row except the last one
         for row in range(self.__height - 1):
-            my_rect += str(Rectangle.print_symbol) * self.__width + "\n"
+            my_rect += str(self.print_symbol) * self.__width + "\n"
         #  Add the last row without a newline character
-        my_rect += str(Rectangle.print_symbol) * self.__width
+        my_rect += str(self.print_symbol) * self.__width
         return my_rect
 
     def __repr__(self):
