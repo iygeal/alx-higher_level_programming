@@ -62,6 +62,9 @@ class Rectangle:
         if self.__width == 0 or self.__height == 0:
             return ""
         my_rect = ""
-        for row in range(self.__height):
+        #  Loop through each row except the last one
+        for row in range(self.__height - 1):
             my_rect += "#" * self.__width + "\n"
+        #  Add the last row without a newline character
+        my_rect += "#" * self.__width
         return my_rect
