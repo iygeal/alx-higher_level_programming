@@ -1,0 +1,46 @@
+#!/usr/bin/python3
+
+"""
+Test cases for say_my_name function.
+"""
+
+# Import the function
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+# Check with both first and last names
+>>> say_my_name("John", "Smith")
+My name is John Smith
+
+# Check with first name only
+>>> say_my_name("Walter")
+My name is Walter
+
+# Check with both first and last names (different names)
+>>> say_my_name("Bob", "Marley")
+My name is Bob Marley
+
+# Check with numbers as first name
+>>> say_my_name(12, "White")
+Traceback (most recent call last):
+  ...
+TypeError: first_name must be a string
+
+# Check with numbers as last name
+>>> say_my_name("John", 123)
+Traceback (most recent call last):
+  ...
+TypeError: last_name must be a string
+
+# Check with only last name
+>>> say_my_name("", "White")
+My name is White
+
+# Check for when None is passed
+>>> say_my_name(None)
+Traceback (most recent call last):
+TypeError: first_name must be a string
+
+# Check for when nothing is passed
+>>> say_my_name()
+Traceback (most recent call last):
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
