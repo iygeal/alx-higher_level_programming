@@ -1,0 +1,111 @@
+# tests/0-add_integer.txt
+"""
+Test cases for add_integer function.
+"""
+
+# Import the function
+>>> add_integer = __import__('0-add_integer').add_integer
+
+# Check when both a and b are positive integers
+>>> add_integer(1, 2)
+3
+
+# Check when both a and b are positive floats
+>>> add_integer(1.0, 2.0)
+3
+
+# Check when a is positive integer and b is positive float
+>>> add_integer(3, 2.5)
+5
+
+# Check when a is positive float and b is positive integer
+>>> add_integer(2.5, 3)
+5
+
+# Check when both a and b are negative integers
+>>> add_integer(-4, -6)
+-10
+
+# Check when both a and b are negative floats
+>>> add_integer(-4.0, -6.0)
+-10
+
+# Check when a is negative integer and b is negative float
+>>> add_integer(-5, -3.5)
+-8
+
+# Check when a is negative float and b is negative integer
+>>> add_integer(-3.5, -5)
+-8
+
+# Check when a is positive integer and b is negative float
+>>> add_integer(8, -2.5)
+6
+
+# Check when a is positive float and b is negative integer
+>>> add_integer(2.5, -8)
+-6
+
+# Check when b is negative float and a is positive integer
+>>> add_integer(4, -1.5)
+3
+
+# Check when b is negative integer and a is positive float
+>>> add_integer(1.5, -4)
+-3
+
+# Check when incorrect input is entered (non-alphanumeric)
+>>> add_integer("abc", 2)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+# Check when either a or b is not a float or an int
+>>> add_integer(3, "abc")
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+
+# Check when a very large number is entered (float)
+>>> add_integer(1e+1000, 2)
+Traceback (most recent call last):
+...
+OverflowError: cannot convert float infinity to integer
+
+# Check when nothing is entered
+>>> add_integer()
+Traceback (most recent call last):
+...
+TypeError: add_integer() missing 1 required positional argument: 'a'
+
+# Check when None is entered as the only argument
+>>> add_integer(None)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+# Check when smallest positive integers are entered
+>>> add_integer(1, 1)
+2
+
+# Check when largest positive integers are entered
+>>> add_integer(2147483647, 2147483647)
+4294967294
+
+# Check when smallest negative integers are entered
+>>> add_integer(-2147483648, -2147483648)
+-4294967296
+
+# Check when largest negative integers are entered
+>>> add_integer(-1, -1)
+-2
+
+# Check when only one number is entered (b defaults to 98)
+>>> add_integer(5)
+103
+
+>>> add_integer(3.5)
+101
+
+>>> add_integer(-7)
+91
