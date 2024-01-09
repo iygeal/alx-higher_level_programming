@@ -22,18 +22,26 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """
         Retrieves a dictionary representation of a Student instance.
+
+        Args:
+            attrs (list): A list of attribute names to be retrieved. If None,
+            retrieve all attributes.
 
         Returns:
             dict: A dictionary representation of the Student instance.
         """
-        # Create a dictionary with serializable attributes
-        serializable_dict = {
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'age': self.age
-        }
+        # If attrs is None or empty, retrieve all attributes
+        if attrs is None or not attrs:
+            return {
+                'first_name': self.first_name,
+                'last_name': self.last_name,
+                'age': self.age
+            }
 
-        return serializable_dict
+        # Retrieve only the specified attributes from the list
+        return {
+            attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)
+            }
