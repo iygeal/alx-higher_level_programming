@@ -8,6 +8,7 @@ class Student:
     """
     Class to define a student with first_name, last_name, and age attributes.
     """
+
     def __init__(self, first_name, last_name, age):
         """
         Initializes a Student instance with first_name, last_name,
@@ -33,15 +34,11 @@ class Student:
         Returns:
             dict: A dictionary representation of the Student instance.
         """
-        # If attrs is None or empty, retrieve all attributes
-        if attrs is None or not attrs:
-            return {
-                'first_name': self.first_name,
-                'last_name': self.last_name,
-                'age': self.age
-            }
+        # Check if attrs is a list of strings
+        if isinstance(
+            attrs, list) and all(isinstance(ele, str) for ele in attrs
+                                 ):
+            return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
 
-        # Retrieve only the specified attributes from the list
-        return {
-            attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)
-            }
+        # Return the entire __dict__ if attrs is not a valid list of strings
+        return self.__dict__
