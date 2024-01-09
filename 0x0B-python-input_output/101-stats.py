@@ -1,54 +1,74 @@
 #!/usr/bin/python3
-""" script that reads stdin line by line and computes metrics"""
+"""
+Script to read stdin line by line and compute metrics:
 
-import sys
-import signal
-from collections import defaultdict
+Input format: <IP Address> - [<date>] "GET /projects/260 HTTP/1.1"
+<status code> <file size>
+Each 10 lines and after a keyboard interruption (CTRL + C),
+prints those statistics since the beginning:
+Total file size: File size: <total size>
+where <total size> is the sum of all previous file sizes (see input
+format above)
+Number of lines by status code:
+possible status codes: 200, 301, 400, 401, 403, 404, 405, and 500
+if a status code doesn’t appear, don’t print anything for this status code
+format: <status code>: <number>
+status codes should be printed in ascending order
+"""
 
-# Initialize variables for metrics
-total_file_size = 0
-status_code_counts = defaultdict(int)
-line_count = 0
 
-
-def print_statistics():
+def print_stats(size, status_codes):
+    """Print accumulated metrics
     """
-    Print statistics based on the accumulated metrics.
-    """
-    print("File size: {}".format(total_file_size))
-    for status_code in sorted(status_code_counts):
-        print("{}: {}".format(status_code, status_code_counts[status_code]))
-
-# Set up a signal handler for SIGINT (Ctrl+C)
+    print("File size: {}".format(size))
+    for key in sorted(status_codes):
+        print("{}: {}".format(key, status_codes[key]))
 
 
-def signal_handler(sig, frame):
-    print_statistics()
-    sys.exit(0)
+if __name__ == "__main__":
+    import sys
 
+    def update_metrics(line, size, status_codes):
+        """Update metrics based on the input line
+        """
+        try:
+            size += int(line[-1])
+        except (IndexError, ValueError):
+            pass
 
-# Register the signal handler
-signal.signal(signal.SIGINT, signal_handler)
+        try:
+            if line[-2] in valid_codes:
+                status_codes[line[-2]] += 1
+        except IndexError:
+            pass
 
-try:
-    for line in sys.stdin:
-        line_count += 1
+        return size, status_codes
 
-        # Parse the line
-        parts = line.split()
-        if len(parts) >= 7:
-            status_code = parts[-2]
-            file_size = int(parts[-1])
+    # Initialize metrics variables
+    size = 0
+    status_codes = {}
+    valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
+    count = 0
 
-            # Update metrics
-            total_file_size += file_size
-            status_code_counts[status_code] += 1
+    try:
+        for line in sys.stdin:
+            # Print statistics every 10 lines
+            if count == 10:
+                print_stats(size, status_codes)
+                count = 1
+            else:
+                count += 1
 
-        # Print statistics every 10 lines
-        if line_count % 10 == 0:
-            print_statistics()
+            # Split the input line into parts
+            line = line.split()
 
-except KeyboardInterrupt:
-    # Handle keyboard interruption (Ctrl+C)
-    print_statistics()
-    sys.exit(0)
+            # Update metrics based on the line
+            size, status_codes = update_metrics(line, size, status_codes)
+
+        # Print final statistics
+        print_stats(size, status_codes)
+
+    except KeyboardInterrupt:
+        # Handle keyboard interruption (Ctrl+C)
+        print_stats(size, status_codes)
+        raise
