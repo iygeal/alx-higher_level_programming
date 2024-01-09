@@ -12,13 +12,12 @@ if __name__ == "__main__":
 
     try:
         # Load existing list from file, if any
-        existing_list = load_from_json_file("add_item.json")
+        items = load_from_json_file("add_item.json")
     except FileNotFoundError:
-        existing_list = []
+        items = []
 
     # Add command-line arguments to the list
-    new_items = sys.argv[1:]
-    updated_list = existing_list + new_items
+    items.extend(sys.argv[1:])
 
     # Save the updated list to the JSON file
-    save_to_json_file(updated_list, "add_item.json")
+    save_to_json_file(items, "add_item.json")
