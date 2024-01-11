@@ -30,8 +30,10 @@ if __name__ == "__main__":
             pass
 
         try:
-            if line[-2] in status_codes:
-                status_codes[line[-2]] += 1
+            status_code = line[-2]
+            if status_code in status_codes:
+                status_codes[status_code] = status_codes.get(
+                    status_code, 0) + 1
         except IndexError:
             pass
 
