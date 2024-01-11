@@ -17,8 +17,8 @@ if __name__ == "__main__":
 
     # Initialize metrics variables
     size = 0
-    status_codes = {}
-    valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
+    status_codes = {'200': 0, '301': 0, '400': 0,
+                    '401': 0, '403': 0, '404': 0, '405': 0, '500': 0}
     count = 0
 
     def update_metrics(line, size, status_codes):
@@ -30,7 +30,7 @@ if __name__ == "__main__":
             pass
 
         try:
-            if line[-2] in valid_codes:
+            if line[-2] in status_codes:
                 status_codes[line[-2]] += 1
         except IndexError:
             pass
