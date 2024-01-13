@@ -101,12 +101,15 @@ class Rectangle(Base):
             [print("#", end="") for w in range(self.width)]
             print("")
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Public method to update attributes using no-keyword arguments"""
         if args:
             attributes = ["id", "width", "height", "x", "y"]
             for attr, value in zip(attributes, args):
                 setattr(self, attr, value)
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
     def __str__(self):
         """String representation of the Rectangle"""
