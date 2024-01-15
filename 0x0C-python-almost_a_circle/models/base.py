@@ -4,6 +4,7 @@ Module that represents the Base class.
 """
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -120,5 +121,49 @@ class Base:
             # Handle IOError, return an empty list in case of file not found
             return []
 
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw Rectangles and Squares using the turtle module.
 
+        Args:
+            list_rectangles (list): A list of Rectangle objects to draw.
+            list_squares (list): A list of Square objects to draw.
+        """
 
+        # Create a turtle screen
+        screen = turtle.Screen()
+        screen.bgcolor("#00008B")
+
+        # Create a turtle for drawing
+        drawer = turtle.Turtle()
+        drawer.pensize(3)
+        drawer.shape("turtle")
+
+        # Draw Rectangles
+        drawer.color("yellow")
+        for rect in list_rectangles:
+            drawer.penup()
+            drawer.goto(rect.x, rect.y)
+            drawer.pendown()
+            for _ in range(2):
+                drawer.forward(rect.width)
+                drawer.left(90)
+                drawer.forward(rect.height)
+                drawer.left(90)
+            drawer.hideturtle()
+
+        # Draw Squares
+        drawer.color("white")
+        for sq in list_squares:
+            drawer.penup()
+            drawer.goto(sq.x, sq.y)
+            drawer.pendown()
+            for _ in range(2):
+                drawer.forward(sq.size)
+                drawer.left(90)
+                drawer.forward(sq.size)
+                drawer.left(90)
+            drawer.hideturtle()
+
+        # Close the window on click
+        screen.exitonclick()
