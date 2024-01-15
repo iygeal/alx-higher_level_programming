@@ -113,7 +113,9 @@ class Base:
                 list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
 
                 # Convert values to integers in the dictionaries
-                list_dicts = [dict([k, int(v)] for k, v in d.items()) for d in list_dicts]
+                list_dicts = [
+                    dict([k, int(v)] for k, v in d.items()) for d in list_dicts
+                    ]
 
                 # Create instances using the create method and return the list
                 return [cls.create(**d) for d in list_dicts]
