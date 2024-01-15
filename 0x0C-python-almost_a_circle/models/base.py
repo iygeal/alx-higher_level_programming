@@ -3,11 +3,12 @@
 Module that represents the Base class.
 """
 import json
+import csv
 
 
 class Base:
     """
-    The base calsss for managing id attribute in future classes
+    The base class for managing id attribute in future classes
     """
 
     __nb_objects = 0
@@ -80,3 +81,44 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except FileNotFoundError:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes and saves to CSV file"""
+        filename = cls.__name__ + ".csv"
+        with open(filename, mode="w", newline='') as file:
+            writer = csv.writer(file)
+            if list_objs is not None:
+                for obj in list_objs:
+                    if cls.__name__ == "Rectangle":
+                        writer.writerow(
+                            [obj.id, obj.width, obj.height, obj.x, obj.y])
+                    elif cls.__name__ == "Square":
+                        writer.writerow([obj.id, obj.size, obj.x, obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserializes from CSV file"""
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, "r", newline="") as csvfile:
+                # Define fieldnames based on the class name
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+
+                # Use csv.DictReader to read rows as dictionaries
+                list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
+
+                # Convert values to integers in the dictionaries
+                list_dicts = [dict([k, int(v)] for k, v in d.items()) for d in list_dicts]
+
+                # Create instances using the create method and return the list
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
+            # Handle IOError, return an empty list in case of file not found
+            return []
+
+
+
