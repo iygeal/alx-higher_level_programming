@@ -643,5 +643,28 @@ class TestSquare_to_dictionary(unittest.TestCase):
         with self.assertRaises(TypeError):
             s.to_dictionary(1)
 
+    def test_create_with_id(self):
+        square = Square.create(**{'id': 89})
+        self.assertIsInstance(square, Square)
+
+    def test_create_with_id_and_size(self):
+        square = Square.create(**{'id': 89, 'size': 1})
+        self.assertIsInstance(square, Square)
+
+    def test_create_with_id_size_x(self):
+        square = Square.create(**{'id': 89, 'size': 1, 'x': 2})
+        self.assertIsInstance(square, Square)
+
+    def test_create_with_id_size_x_y(self):
+        square = Square.create(**{'id': 89, 'size': 1, 'x': 2, 'y': 3})
+        self.assertIsInstance(square, Square)
+
+    def test_save_to_file_with_empty_list(self):
+        Square.save_to_file([])
+
+    def test_save_to_file_with_square_instance_in_list(self):
+        Square.save_to_file([Square(1)])
+
+
 if __name__ == "__main__":
     unittest.main()
