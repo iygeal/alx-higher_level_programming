@@ -3,15 +3,9 @@
 -- and calculates the sum of ratings from the tv_show_ratings table
 -- Results are sorted in descending order by the rating sum
 
-SELECT tv_shows.title, SUM(tv_show_ratings.rating) AS rating_sum
+SELECT tv_shows.title, SUM(tv_show_ratings.rate) AS rating
 FROM tv_shows
-INNER JOIN tv_show_ratings ON tv_shows.id = tv_show_ratings.show_id
-GROUP BY tv_shows.title
-ORDER BY rating_sum DESC;
-
--- SELECT tv_shows.title, SUM(tv_show_ratings.rate) AS rating_sum
--- FROM tv_shows
--- INNER JOIN tv_show_ratings
--- ON tv_shows.id = tv_show_ratings.show_id
--- GROUP BY tv_shows.id
--- ORDER BY rating DESC;
+INNER JOIN tv_show_ratings
+ON tv_shows.id = tv_show_ratings.show_id
+GROUP BY tv_shows.id
+ORDER BY rating DESC;
