@@ -3,6 +3,7 @@
 -- Then, it selects all cities from the cities table where state_id matches the one for California
 -- Results are sorted in ascending order by cities.id
 
-SELECT id, name FROM cities;
+SELECT id, name
+FROM cities
 WHERE state_id = (SELECT id FROM states WHERE name = 'California')
 ORDER BY id ASC;
