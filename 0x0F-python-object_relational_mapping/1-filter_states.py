@@ -16,8 +16,8 @@ if __name__ == "__main__":
         # Create a cursor
         cur = states_db.cursor()
 
-        # Execute the query
-        cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
+        # Execute the query (LIKE BINARY makes it case sensitive)
+        cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id")
 
         # Fetch all rows
         rows = cur.fetchall()
