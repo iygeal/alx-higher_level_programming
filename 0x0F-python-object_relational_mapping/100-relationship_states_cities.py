@@ -41,9 +41,6 @@ if __name__ == "__main__":
         # Commit the session to save changes to the database
         session.commit()
 
-        # Print the new state's ID
-        print(california.id)
-
     except Exception as e:
         # Rollback the session in case of error
         session.rollback()
