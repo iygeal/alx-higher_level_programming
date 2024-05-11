@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     auth = (username, password)
 
-    response = requests.get(url, data=auth)
+    response = requests.get(url, auth=auth)
 
     if response.status_code == 200:
         user_data = response.json()
