@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     email = parse.urlencode(email).encode('utf-8')
 
-    req = request.Request(my_url, data=email, method="POST")
+    req = request.Request(my_url, data=email, method='POST')
 
     with request.urlopen(req) as response:
         page_body = response.read()
