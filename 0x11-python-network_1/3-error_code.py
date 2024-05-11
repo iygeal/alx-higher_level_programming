@@ -15,4 +15,4 @@ if __name__ == "__main__":
             decoded_body = page_body.decode('utf-8')
             print(decoded_body)
     except error.HTTPError as e:
-        print("Error code:", e)
+        print("Error code:", e.code)
