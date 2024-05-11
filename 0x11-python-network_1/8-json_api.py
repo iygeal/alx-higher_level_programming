@@ -18,7 +18,7 @@ if __name__ == "__main__":
     response = requests.post(url, data=data)
 
     try:
-        json_response = response.json
+        json_response = response.json()
         if json_response:
             print(f"[{json_response['id']}] {json_response['name']}")
         else:
