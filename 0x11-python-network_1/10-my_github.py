@@ -6,19 +6,11 @@
 
 from sys import argv
 import requests
+from requests.auth import HTTPBasicAuth
 
 if __name__ == "__main__":
-    username, password = argv[1], argv[2]
 
     url = "https://api.github.com/user"
-
-    auth = (username, password)
-
-    response = requests.get(url, auth=auth)
-
-    if response.status_code == 200:
-        user_data = response.json()
-        user_id = user_data['id']
-        print(user_id)
-    else:
-        print("Status code:", response.status_code)
+    auth = HTTPBasicAuth(argv[1], argv[2])
+    response = requests.get("https://api.github.com/user", auth=auth)
+    print(response.json().get("id"))
