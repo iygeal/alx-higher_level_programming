@@ -7,7 +7,7 @@ import urllib.request
 
 if __name__ == "__main__":
 
-    my_url, email = argv[1], argv[2]
+    my_url, email = argv[1], {'email': argv[2]}
 
     email = email.encode('utf-8')
 
