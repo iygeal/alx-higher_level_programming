@@ -12,6 +12,6 @@ if __name__ == "__main__":
         page_decoded = page_body.decode('utf-8')
 
     print("Body content:")
-    print("\t- type: ", type(page_body))
-    print("\t- content: ", page_body)
-    print("\t- utf8 content: ", page_decoded)
+    print("\t- type:", type(page_body))
+    print("\t- content:", page_body)
+    print("\t- utf8 content:", page_decoded)
