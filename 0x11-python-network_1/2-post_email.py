@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     my_url, email = argv[1], {'email': argv[2]}
 
-    email = parse.urlencode(email).encode('utf-8')
+    email = parse.urlencode(email).encode('ascii')
 
     req = request.Request(my_url, data=email, method="POST")
 
