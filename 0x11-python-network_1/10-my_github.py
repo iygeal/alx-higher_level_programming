@@ -5,20 +5,25 @@
 
 
 from sys import argv
+import sys
 import requests
 
 if __name__ == "__main__":
-    username, password = argv[1], argv[2]
+    try:
+        username, password = argv[1], argv[2]
 
-    url = "https://api.github.com/user"
+        url = "https://api.github.com/user"
 
-    auth = (username, password)
+        auth = (username, password)
 
-    response = requests.get(url, auth=auth)
+        response = requests.get(url, auth=auth)
 
-    if response.status_code == 200:
-        user_data = response.json()
-        user_id = user_data['id']
-        print("Your GitHub id is:", user_id)
-    else:
-        print("Failed to retrieve id. Status code:", response.status_code)
+        if response.status_code == 200:
+            user_data = response.json()
+            user_id = user_data['id']
+            print(user_id)
+        else:
+            print("Status code:", response.status_code)
+    except requests.exceptions.RequestException as e:
+        print("GitHub API inaccessible: code", e)
+        sys.exit(1)
