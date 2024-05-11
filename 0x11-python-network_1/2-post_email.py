@@ -3,17 +3,17 @@
 
 
 from sys import argv
-import urllib.request
+from urllib import request, parse
 
 if __name__ == "__main__":
 
     my_url, email = argv[1], {'email': argv[2]}
 
-    email = email.encode('utf-8')
+    email = parse.urlencode(email).encode('utf-8')
 
-    req = urllib.request.Request(my_url, email)
+    req = request.Request(my_url, data=email)
 
-    with urllib.request.urlopen(req) as response:
+    with request.urlopen(req) as response:
         page_body = response.read()
         decoded_page = page_body.decode('utf-8')
     print(decoded_page)
