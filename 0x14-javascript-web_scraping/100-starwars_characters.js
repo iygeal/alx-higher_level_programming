@@ -11,9 +11,16 @@ request.get(url, (err, response, body) => {
     return;
   }
 
-  const characters = JSON.parse(body);
+  const characters = JSON.parse(body).characters;
 
   characters.forEach((character) => {
-    console.log(character.name);
+    request.get(character, (charErr, charRes, Charbody) => {
+      if (charErr) {
+        console.error(charErr);
+        return;
+      }
+      const charName = JSON.parse(Charbody).name;
+      console.log(charName);
+    });
   });
 });
