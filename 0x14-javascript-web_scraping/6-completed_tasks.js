@@ -9,15 +9,15 @@ request(apiUrl, (error, response, body) => {
     return;
   }
 
-  const todos = JSON.parse(body);
-  const completedTasks = {};
+  const todos = JSON.parse(body); // parse JSON response
+  const completedTasks = {}; // object to store completed tasks for each user
 
   todos.forEach((todo) => {
-    if (todo.completed) {
-      if (!completedTasks[todo.userId]) {
-        completedTasks[todo.userId] = 1;
+    if (todo.completed) { // check if todo is completed
+      if (!completedTasks[todo.userId]) { // check if user id already exists
+        completedTasks[todo.userId] = 1; // add user id to object
       } else {
-        completedTasks[todo.userId]++;
+        completedTasks[todo.userId]++; // increment count for user id
       }
     }
   });
