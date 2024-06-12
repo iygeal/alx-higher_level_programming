@@ -11,7 +11,7 @@ $(document).ready(function () {
   // Fetch translation when the button is clicked
   $('#btn_translate').click(fetchTranslation);
 
-  // Fetch translation when Enter key is pressed while the input field is focused
+  // Fetch the translation when Enter key is pressed while the input field is focused
   $('#language_code').keypress(function (e) {
     if (e.which === 13) {
       // 13 is the Enter key
